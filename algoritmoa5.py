@@ -59,6 +59,43 @@ def to_vector(mensaje, tam):
         mensaje_v += [int(mensaje[i])]
     return mensaje_v
 
+def a52(r1, r2, r3, cad):
+    may_r1_pos = 10
+    may_r2_pos = 11
+    may_r3_pos = 12
+    resultado = []
+    resultado_fin = []
+
+    for i in range(0, 10):
+        mayor = mayoria(r1[may_r1_pos], r2[may_r2_pos], r3[may_r3_pos])
+        resultado += [(r1[0] ^ r2[0] ^ r3[0])]
+        if r1[may_r1_pos] == mayor:
+            new = r1[0] ^ r1[1] ^ r1[2] ^ r1[5]
+            r1 = insertado(r1, new)
+        if r2[may_r2_pos] == mayor:
+            new = r2[0] ^ r2[1]
+            r2 = insertado(r2, new)
+        if r3[may_r3_pos] == mayor:
+            new = r3[0] ^ r3[1] ^ r3[2] ^ r3[15]
+            r3 = insertado(r3, new)
+
+
+    for i in range(0, len(cad)):
+        mayor = mayoria(r1[may_r1_pos], r2[may_r2_pos], r3[may_r3_pos])
+        resultado += [(r1[0] ^ r2[0] ^ r3[0])]
+        if r1[may_r1_pos] == mayor:
+            new = r1[0] ^ r1[1] ^ r1[2] ^ r1[5]
+            r1 = insertado(r1, new)
+        if r2[may_r2_pos] == mayor:
+            new = r2[0] ^ r2[1]
+            r2 = insertado(r2, new)
+        if r3[may_r3_pos] == mayor:
+            new = r3[0] ^ r3[1] ^ r3[2] ^ r3[15]
+            r3 = insertado(r3, new)
+        resultado_fin += [resultado[i] ^ cad[i]]
+    print(resultado_fin)
+    print(des_binarizar(resultado_fin))
+
 
 def a5(r1, r2, r3, cad):
     may_r1_pos = 10
